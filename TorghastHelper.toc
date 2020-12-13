@@ -1,0 +1,9 @@
+## Title: TorghastHelper
+## Version: 0.1.0
+## Author: Ignifazius
+## Interface: 90002
+## Notes: Adds some useful information to your tooltips in Torghast
+## Notes-deDE: Fügt in Torghast einige hilfreiche Informationen zum Tooltip hinzu
+
+TorghastHelper.lua
+SoulValues.lua
