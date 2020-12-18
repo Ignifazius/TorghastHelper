@@ -19,7 +19,7 @@ TorghastHelper = {}
 local TAG = "TH"
 local name, addon = ...;
 local _, L = ...;
-
+local isRSoulPresent = false;
 
 local eventResponseFrame = CreateFrame("Frame", "Helper")
     eventResponseFrame:RegisterEvent("ADDON_LOADED");
@@ -33,13 +33,11 @@ local eventResponseFrame = CreateFrame("Frame", "Helper")
 function TorghastHelper.registerAddon()
 	eventResponseFrame:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
 	eventResponseFrame:RegisterEvent("CURSOR_UPDATE");
-	print("TorghastHelper loaded")
 end
 
 function TorghastHelper.unregisterAddon()
 	eventResponseFrame:UnregisterEvent("UPDATE_MOUSEOVER_UNIT");
 	eventResponseFrame:UnregisterEvent("CURSOR_UPDATE");
-	print("TorghastHelper unloaded")
 end
 
 
@@ -60,8 +58,7 @@ function TorghastHelper.isInTorghast()
 	typ = mapinfo.mapType;
 	parent = mapinfo.parentMapID;
 	flags = mapinfo.flags;
-	print(mapid, name, typ, parent, flags)
-	if name == "Torghast" then -- id == 1758 (Skoldus Hall lvl 1) or id = 1627 (Skoldus Hall lvl 2)then
+	if name == "Torghast" then
 		return true
 	end
 	return false
@@ -81,16 +78,10 @@ local function eventHandler(self, event, arg1, arg2, arg3, arg4, arg5)
 		--TorghastHelper.createMenuFrame()
 		TorghastHelper.toggleAddon()	
 	elseif (event == "BAG_UPDATE") then
-		if TorghastHelper_scanForRSoul() then
-			print("RSoul found")
-		else
-			print("RSoul missing")
-		end
-    end			  
+		TorghastHelper_scanForRSoul()
 	if event == "ZONE_CHANGED_NEW_AREA" then --entering/leaving torghast
 		TorghastHelper.toggleAddon()
 	end
-	--print(event)
 end
 eventResponseFrame:SetScript("OnEvent", eventHandler);
 
@@ -103,27 +94,22 @@ end
 
 
 function TorghastHelper.addValueToTooltip()
-    local coloredKey = GameTooltipTextLeft1:GetText()
-	local key = string.gsub(coloredKey, "|cff%x%x%x%x%x%x", "")
-	key = string.gsub(key, "|r", "")
-	print(key)
-	if key ~= nil then
-		local infoText, prefix
-		--local _,_,_, difficulty = GetInstanceInfo()
-		--print("Key:", key)	
-		--print("Value:", addon.values[key])
-		--print("Effekt:", addon.values[key]["effect"])
-		--print("Description:", addon.values[key]["effect"]["description"])
-		--if addon.values[key] ~= nil then
-			--print("Description:", addon.values[key]["effect"]["description"])
-		--end
-		if addon.values[key] ~= nil and addon.values[key]["effect"] ~= nil and addon.values[key]["effect"]["description"] ~= nil then
-			infoText = addon.values[key]["effect"]["description"]
-			prefix = TAG..": "
-		end
-		if infoText ~= nil and TorghastHelper.checkTooltipForDuplicates() then
-			GameTooltip:AddLine(prefix..infoText, 0.9, 0.8, 0.5, 1, 0)
-			GameTooltip:Show()
+	if isRSoulPresent then
+		local coloredKey = GameTooltipTextLeft1:GetText()
+		if (coloredKey ~= nil) then
+			local key = string.gsub(coloredKey, "|cff%x%x%x%x%x%x", "")
+			key = string.gsub(key, "|r", "")
+			if key ~= nil then
+				local infoText, prefix
+				if addon.values[key] ~= nil and addon.values[key]["effect"] ~= nil and addon.values[key]["effect"]["description"] ~= nil then
+					infoText = addon.values[key]["effect"]["description"]
+					prefix = TAG..": "
+				end
+				if infoText ~= nil and TorghastHelper.checkTooltipForDuplicates() then
+					GameTooltip:AddLine(prefix..infoText, 0.9, 0.8, 0.5, 1, 0)
+					GameTooltip:Show()
+				end
+			end
 		end
 	end
 end
@@ -193,9 +179,10 @@ function TorghastHelper_scanForRSoul()
 		for slot=0,34 do
 			local _, _, _, quality, _, _, _, _, _, itemID = GetContainerItemInfo(container, slot)			
 			if itemID == 170540 then --ranveonous anima soul
-				return true
+				isRSoulPresent = true
+				return
 			end
 		end
 	end
-	return false
+	isRSoulPresent = false
 end

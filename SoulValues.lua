@@ -24,7 +24,7 @@ addon.values = {
 	["Mawrat"] = {["id"] = 151353, ["effect"] = addon.descriptions["Mawrat Harness"]},
 	["Oddly Large Mawrat"] = {["id"] = 154030, ["effect"] = addon.descriptions["Mawrat Harness"]},
 	["Broker Ve'ken"] = {["id"] = 152594, ["effect"] = addon.descriptions["Broker's Purse"]},
-	["Broker Ve'nott"] = {["id"] = 170257, ["name"] = addon.descriptions["Broker's Purse"]},
+	["Broker Ve'nott"] = {["id"] = 170257, ["effect"] = addon.descriptions["Broker's Purse"]},
 	
 	["Mawsworn Seeker"] = {["id"] = 152708, ["effect"] = addon.descriptions["Maw Seeker Harness"]},
 	["Mawsworn Archer"] = {["id"] = 153878, ["effect"] = addon.descriptions["Pocketed Soulcage"]},
@@ -83,6 +83,22 @@ addon.values = {
 	["Prisonbreak Mauler"] = {["id"] = 154018, ["effect"] = addon.descriptions["Prisoner's Concord"]},
 	["Prisonbreak Soulmender"] = {["id"] = 154016, ["effect"] = addon.descriptions["Prisoner's Concord"]},	
 	
+}
+
+
+addon.rares = {
+	["Darksworn Goliath"] = {
+		["id"] = 173134, 
+		["buffs"] = {
+			["effect"] = "Spectral Oats",
+			["times"] = 3
+		}
+	},
+}
+
+addon.abilities = {
+	["Obleron Endurance"] = {["effect"] = "Increase maximum health by 15%"},
+	["Spectral Oats"] = {["effect"] = "Heal 2% of you max health every 1 sec while running"},
 }
 
 -- [""] = {["id"] = , ["effect"] = addon.descriptions[""]},
