@@ -17,6 +17,14 @@ addon.descriptions = {
 	["Purifier's Flame"] = {["id"] = 295754, ["description"] = "Deadsoul Death Pools no longer damage you, and instead you absorb them, healing yourself for (50% of Spell power) every 1 sec."},
 	["Glasswing Charm"] = {["id"] = 305282, ["description"] = "Become a cloud of insects when out of combat, increasing movement speed by 80%."},
 	["Prisoner's Concord"] = {["id"] = 305293, ["description"] = "Freeing a Soul Remnant from Torghast grants you 100% Critical Strike for 10 sec."},
+	
+	["Pulsing Rot-hive"] = {["id"] = 338616, ["description"] = "Your attacks have a chance to attach decayfly larvae in the target, inflicting (40% of Spell power) Nature damage every 1 sec for 6 sec. When this effect expires, the larvae hatch from within the target to fight for you."},
+	["Swarm Form"] = {["id"] = 338631, ["description"] = "Your body becomes more like a swarm of insects, increasing enemy chance to miss you by 10%."},
+	["Obleron Endurance"] = {["id"] = 293025, ["description"] = "Increase maximum health by 15%."},
+	["Obleron Endurance x3"] = {["id"] = 293027, ["description"] = "Increase maximum health by 45%."},
+	["Spectral Oats"] = {["id"] = 315319, ["description"] = "Heal 2% of your max health every 1 sec while running."},
+	["Resonating Effigy"] = {["id"] = 339026, ["description"] = "You take 30% less Magic damage and suffer 15% more Physical damage."},
+	["Ephemeral Effigy"] = {["id"] = 339024, ["description"] = "You take 30% less Physical damage and suffer 15% more Magic damage."},
 }
 
 
@@ -89,17 +97,22 @@ addon.values = {
 addon.rares = {
 	["Darksworn Goliath"] = {
 		["id"] = 173134, 
-		["buffs"] = {
-			["effect"] = "Spectral Oats",
-			["times"] = 3
-		}
+		["buffs"] = {"Spectral Oats"}
+	},
+	["Invasive Decayfly"] = {
+		["id"] = 173114, 
+		["buffs"] = {"Pulsing Rot-hive", "Swarm Form"}
+	},
+	["Ghastly Charger"] = {
+		["id"] = 156134, 
+		["buffs"] = {"Obleron Endurance x3", "Spectral Oats"}
+	},
+	["Writhing Misery"] = {
+		["id"] = 170385, 
+		["buffs"] = {"Resonating Effigy", "Ephemeral Effigy", "Obleron Endurance x3"}
 	},
 }
 
-addon.abilities = {
-	["Obleron Endurance"] = {["effect"] = "Increase maximum health by 15%"},
-	["Spectral Oats"] = {["effect"] = "Heal 2% of you max health every 1 sec while running"},
-}
 
 -- [""] = {["id"] = , ["effect"] = addon.descriptions[""]},
 -- [""] = {["id"] = , ["description"] = ""},
