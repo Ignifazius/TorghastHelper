@@ -22,9 +22,16 @@ addon.descriptions = {
 	["Swarm Form"] = {["id"] = 338631, ["description"] = "Your body becomes more like a swarm of insects, increasing enemy chance to miss you by 10%."},
 	["Obleron Endurance"] = {["id"] = 293025, ["description"] = "Increase maximum health by 15%."},
 	["Obleron Endurance x3"] = {["id"] = 293027, ["description"] = "Increase maximum health by 45%."},
+	["Obleron Winds"] = {["id"] = 294592, ["description"] = "Increase haste by 3%."},
+	["Obleron Winds x3"] = {["id"] = 294594, ["description"] = "Increase haste by 9%."},
 	["Spectral Oats"] = {["id"] = 315319, ["description"] = "Heal 2% of your max health every 1 sec while running."},
 	["Resonating Effigy"] = {["id"] = 339026, ["description"] = "You take 30% less Magic damage and suffer 15% more Physical damage."},
 	["Ephemeral Effigy"] = {["id"] = 339024, ["description"] = "You take 30% less Physical damage and suffer 15% more Magic damage."},
+	["Tremorbeast Tusk"] = {["id"] = 297576, ["description"] = "When an enemy damages you, they suffer (60% of Spell power) Nature damage. If they deal at least 5% of your health in damage, they are knocked back.The knockback may only occur every 10 sec per target."},
+	["Tremorbeast Heart"] = {["id"] = 296140, ["description"] = "Primary stat increased by 15%, and regenerate (100% of Spell power) health every 5 sec."},
+	["Soulward Clasp"] = {["id"] = 338922, ["description"] = "Your attacks have a chance to create a zone of soul empowerment nearby. Any player may collect this to gain 25% damage and healing done and 25% movement speed for 10 sec."},
+	["V'lara's Cape of Subterfuge"] = {["id"] = 338948, ["description"] = "Your attacks have a chance to cause you to fade away, reducing your threat for 6 sec. While you are under this effect, your critical strike chance is increased by 25%."},
+	--[""] = {["id"] = , ["description"] = ""},
 }
 
 
@@ -111,6 +118,15 @@ addon.rares = {
 		["id"] = 170385, 
 		["buffs"] = {"Resonating Effigy", "Ephemeral Effigy", "Obleron Endurance x3"}
 	},
+	["Dusky Tremorbeast"] = {
+		["id"] = 152508, 
+		["buffs"] = {"Tremorbeast Tusk", "Tremorbeast Heart", "Obleron Winds x3"}
+	},
+	["Soulstalker V'lara"] = {
+		["id"] = 173191, 
+		["buffs"] = {"Soulward Clasp", "V'laras Cape of Subterfuge", "Obleron Winds x3"}
+	},
+	
 }
 
 
