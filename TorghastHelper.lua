@@ -22,7 +22,6 @@ local _, L = ...;
 local isRSoulPresent = false;
 
 local eventResponseFrame = CreateFrame("Frame", "Helper")
-    eventResponseFrame:RegisterEvent("ADDON_LOADED");
 	eventResponseFrame:RegisterEvent("PLAYER_LOGIN")
 	eventResponseFrame:RegisterEvent("PLAYER_LOGOUT")
 	eventResponseFrame:RegisterEvent("ZONE_CHANGED")
@@ -49,10 +48,6 @@ local function eventHandler(self, event, arg1, arg2, arg3, arg4, arg5)
         TorghastHelper.function__wait(0.1, TorghastHelper.addValueToTooltip)
     elseif (event == "CURSOR_UPDATE") then
         TorghastHelper.function__wait(0.1, TorghastHelper.addValueToTooltip)
-    elseif(event == "ADDON_LOADED" and arg1 == "TorghastHelper") then
-        if (GetLocale() ~= "enGB" and GetLocale() ~= "enUS") then
-            print("TorghastHelper: Your language is currently NOT supported.")-- This addon will only work partially! Please consider providing some translations via the projects website: https://wow.curseforge.com/projects/TorghastHelper")
-        end
 	elseif(event == "PLAYER_LOGIN") then
 		TorghastHelper.createMenuFrame()
 		TorghastHelper.toggleAddon()
@@ -135,7 +130,7 @@ function TorghastHelper.createMenuFrame()
 end
 
 function TorghastHelper.refresh()
-	configAlwaysDisplay:SetChecked(alwaysDisplay)
+	configAlwaysDisplay:SetChecked(alwaysDisplayTraits)
 end
 
 function TorghastHelper.createConfigFrame()
