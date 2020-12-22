@@ -32,103 +32,106 @@ addon.descriptions = {
 	["Soulward Clasp"] = {["id"] = 338922, ["description"] = "Your attacks have a chance to create a zone of soul empowerment nearby. Any player may collect this to gain 25% damage and healing done and 25% movement speed for 10 sec."},
 	["V'lara's Cape of Subterfuge"] = {["id"] = 338948, ["description"] = "Your attacks have a chance to cause you to fade away, reducing your threat for 6 sec. While you are under this effect, your critical strike chance is increased by 25%."},
 	--[""] = {["id"] = , ["description"] = ""},
+	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
 
 
 addon.values = {
-	["Mawrat"] = {["id"] = 151353, ["effect"] = addon.descriptions["Mawrat Harness"]},
-	["Oddly Large Mawrat"] = {["id"] = 154030, ["effect"] = addon.descriptions["Mawrat Harness"]},
-	["Broker Ve'ken"] = {["id"] = 152594, ["effect"] = addon.descriptions["Broker's Purse"]},
-	["Broker Ve'nott"] = {["id"] = 170257, ["effect"] = addon.descriptions["Broker's Purse"]},
+	[151353] = {["name"] = "Mawrat", ["effect"] = addon.descriptions["Mawrat Harness"]},
+	[154030] = {["name"] = "Oddly Large Mawrat", ["effect"] = addon.descriptions["Mawrat Harness"]},
+	[152594] = {["name"] = "Broker Ve'ken", ["effect"] = addon.descriptions["Broker's Purse"]},
+	[170257] = {["name"] = "Broker Ve'nott", ["effect"] = addon.descriptions["Broker's Purse"]},
 	
-	["Mawsworn Seeker"] = {["id"] = 152708, ["effect"] = addon.descriptions["Maw Seeker Harness"]},
-	["Mawsworn Archer"] = {["id"] = 153878, ["effect"] = addon.descriptions["Pocketed Soulcage"]},
-	["Mawsworn Interceptor"] = {["id"] = 150959, ["effect"] = addon.descriptions["Pocketed Soulcage"]},
-	["Mawsworn Guard"] = {["id"] = 150958, ["effect"] = addon.descriptions["Warden's Authority"]},
-	["Mawsworn Sentry"] = {["id"] = 153874, ["effect"] = addon.descriptions["Warden's Authority"]},
-	["Mawsworn Firecaller"] = {["id"] = 157572, ["effect"] = addon.descriptions["Flamestarved Cinders"]},
-	["Mawsworn Flametender"] = {["id"] = 157571, ["effect"] = addon.descriptions["Flamestarved Cinders"]},	
-	["Mawsworn Acolyte"] = {["id"] = 155790, ["effect"] = addon.descriptions["Marrow Scooper"]},
-	["Mawsworn Disciple"] = {["id"] = 155830, ["effect"] = addon.descriptions["Marrow Scooper"]},
-	["Mawsworn Endbringer"] = {["id"] = 157810, ["effect"] = addon.descriptions["Marrow Scooper"]},
-	["Mawsworn Soulbinder"] = {["id"] = 155949, ["effect"] = addon.descriptions["Marrow Scooper"]},
-	["Mawsworn Shadestalker"] = {["id"] = 157819, ["effect"] = addon.descriptions["Warden's Authority"]},
-	["Mawsworn Shackler"] = {["id"] = 155798, ["effect"] = addon.descriptions["Shackle Keys"]},
+	[152708] = {["name"] = "Mawsworn Seeker", ["effect"] = addon.descriptions["Maw Seeker Harness"]},
+	[153878] = {["name"] = "Mawsworn Archer", ["effect"] = addon.descriptions["Pocketed Soulcage"]},
+	[150959] = {["name"] = "Mawsworn Interceptor", ["effect"] = addon.descriptions["Pocketed Soulcage"]},
+	[150958] = {["name"] = "Mawsworn Guard", ["effect"] = addon.descriptions["Warden's Authority"]},
+	[153874] = {["name"] = "Mawsworn Sentry", ["effect"] = addon.descriptions["Warden's Authority"]},
+	[157572] = {["name"] = "Mawsworn Firecaller", ["effect"] = addon.descriptions["Flamestarved Cinders"]},
+	[157571] = {["name"] = "Mawsworn Flametender", ["effect"] = addon.descriptions["Flamestarved Cinders"]},	
+	[155790] = {["name"] = "Mawsworn Acolyte", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[155830] = {["name"] = "Mawsworn Disciple", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[157810] = {["name"] = "Mawsworn Endbringer", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[155949] = {["name"] = "Mawsworn Soulbinder", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[157809] = {["name"] = "Mawsworn Darkcaster", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[155812] = {["name"] = "Mawsworn Ritualist", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[157819] = {["name"] = "Mawsworn Shadestalker", ["effect"] = addon.descriptions["Warden's Authority"]},
+	[155798] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
 	
-	["Lumbering Creation"] = {["id"] = 155824, ["effect"] = addon.descriptions["Marrow Scooper"]},
-	["Skeletal Remains"] = {["id"] = 155793, ["effect"] = addon.descriptions["Skeletal Ward"]},	
-	["Flameforge Master"] = {["id"] = 157584, ["effect"] = addon.descriptions["Flamestarved Cinders"]},
-	["Forge Keeper"] = {["id"] = 157583, ["effect"] = addon.descriptions["Flamestarved Cinders"]},
-	["Flameforge Enforcer"] = {["id"] = 157634, ["effect"] = addon.descriptions["Warden's Authority"]},
+	[155824] = {["name"] = "Lumbering Creation", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[155793] = {["name"] = "Skeletal Remains", ["effect"] = addon.descriptions["Skeletal Ward"]},	
+	[157584] = {["name"] = "Flameforge Master", ["effect"] = addon.descriptions["Flamestarved Cinders"]},
+	[157583] = {["name"] = "Forge Keeper", ["effect"] = addon.descriptions["Flamestarved Cinders"]},
+	[157634] = {["name"] = "Flameforge Enforcer", ["effect"] = addon.descriptions["Warden's Authority"]},
 	
-	["Coldheart Agent"] = {["id"] = 156212, ["effect"] = addon.descriptions["Dark Armaments"]},
-	["Coldheart Ambusher"] = {["id"] = 170800, ["effect"] = addon.descriptions["Dark Armaments"]},
-	["Coldheart Ascendant"] = {["id"] = 156157, ["effect"] = addon.descriptions["Dark Armaments"]},
-	["Coldheart Binder"] = {["id"] = 156226, ["effect"] = addon.descriptions["Dark Armaments"]},
-	["Coldheart Guardian"] = {["id"] = 156213, ["effect"] = addon.descriptions["Dark Armaments"]},
-	["Coldheart Javelineer"] = {["id"] = 156159, ["effect"] = addon.descriptions["Dark Armaments"]},
-	["Coldheart Scout"] = {["id"] = 156219, ["effect"] = addon.descriptions["Dark Armaments"]},
+	[156212] = {["name"] = "Coldheart Agent", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[170800] = {["name"] = "Coldheart Ambusher", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[156157] = {["name"] = "Coldheart Ascendant", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[156226] = {["name"] = "Coldheart Binder", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[156213] = {["name"] = "Coldheart Guardian", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[156159] = {["name"] = "Coldheart Javelineer", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[156219] = {["name"] = "Coldheart Scout", ["effect"] = addon.descriptions["Dark Armaments"]},
 	
-	["Deadsoul Scavenger"] = {["id"] = 151816, ["effect"] = addon.descriptions["Deadsoul Hound Harness"]},
-	["Deadsoul Drifter"] = {["id"] = 152644, ["effect"] = addon.descriptions["Purifier's Flame"]},
-	["Deadsoul Echo"] = {["id"] = 151815, ["effect"] = addon.descriptions["Purifier's Flame"]},
-	["Deadsoul Scavenger"] = {["id"] = 151816, ["effect"] = addon.descriptions["Purifier's Flame"]},
-	["Deadsoul Shade"] = {["id"] = 151814, ["effect"] = addon.descriptions["Purifier's Flame"]},
-    ["Deadsoul Shadow"] = {["id"] = 153879, ["effect"] = addon.descriptions["Purifier's Flame"]},
-    ["Deadsoul Shambler"] = {["id"] = 153885, ["effect"] = addon.descriptions["Purifier's Flame"]},
-    ["Deadsoul Spirit"] = {["id"] = 153882, ["effect"] = addon.descriptions["Purifier's Flame"]},
-    ["Weeping Wraith"] = {["id"] = 153552, ["effect"] = addon.descriptions["Purifier's Flame"]},
+	[151816] = {["name"] = "Deadsoul Scavenger", ["effect"] = addon.descriptions["Deadsoul Hound Harness"]},
+	[152644] = {["name"] = "Deadsoul Drifter", ["effect"] = addon.descriptions["Purifier's Flame"]},
+	[151815] = {["name"] = "Deadsoul Echo", ["effect"] = addon.descriptions["Purifier's Flame"]},
+	[151816] = {["name"] = "Deadsoul Scavenger", ["effect"] = addon.descriptions["Purifier's Flame"]},
+	[151814] = {["name"] = "Deadsoul Shade", ["effect"] = addon.descriptions["Purifier's Flame"]},
+    [153879] = {["name"] = "Deadsoul Shadow", ["effect"] = addon.descriptions["Purifier's Flame"]},
+    [153885] = {["name"] = "Deadsoul Shambler", ["effect"] = addon.descriptions["Purifier's Flame"]},
+    [153882] = {["name"] = "Deadsoul Spirit", ["effect"] = addon.descriptions["Purifier's Flame"]},
+    [153552] = {["name"] = "Weeping Wraith", ["effect"] = addon.descriptions["Purifier's Flame"]},
 	
-	["Blazing Elemental"] = {["id"] = 154128, ["effect"] = addon.descriptions["Flamestarved Cinders"]},
-	["Burning Emberguard"] = {["id"] = 154129, ["effect"] = addon.descriptions["Flamestarved Cinders"]},
+	[154128] = {["name"] = "Blazing Elemental", ["effect"] = addon.descriptions["Flamestarved Cinders"]},
+	[154129] = {["name"] = "Burning Emberguard", ["effect"] = addon.descriptions["Flamestarved Cinders"]},
 	
 	
-	["Faeleaf Grovesinger"] = {["id"] = 155225, ["effect"] = addon.descriptions["Glasswing Charm"]},
-	["Faeleaf Tender"] = {["id"] = 155221, ["effect"] = addon.descriptions["Glasswing Charm"]},
-	["Faeleaf Warden"] = {["id"] = 155216, ["effect"] = addon.descriptions["Glasswing Charm"]},
-	["Verdant Keeper"] = {["id"] = 155226, ["effect"] = addon.descriptions["Glasswing Charm"]},
-	["Faeleaf Lasher"] = {["id"] = 155215, ["effect"] = addon.descriptions["Glasswing Charm"]},
-	["Gormling Pest"] = {["id"] = 155211, ["effect"] = addon.descriptions["Glasswing Charm"]},
-	["Gormling Spitter"] = {["id"] = 155219, ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155225] = {["name"] = "Faeleaf Grovesinger", ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155221] = {["name"] = "Faeleaf Tender", ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155216] = {["name"] = "Faeleaf Warden", ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155226] = {["name"] = "Verdant Keeper", ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155215] = {["name"] = "Faeleaf Lasher", ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155211] = {["name"] = "Gormling Pest", ["effect"] = addon.descriptions["Glasswing Charm"]},
+	[155219] = {["name"] = "Gormling Spitter", ["effect"] = addon.descriptions["Glasswing Charm"]},
 	
-	["Armed Prisoner"] = {["id"] = 154011, ["effect"] = addon.descriptions["Prisoner's Concord"]},
-	["Escaped Ritualist"] = {["id"] = 154015, ["effect"] = addon.descriptions["Prisoner's Concord"]},
-	["Imprisoned Cabalist"] = {["id"] = 154014, ["effect"] = addon.descriptions["Prisoner's Concord"]},
-	["Prisonbreak Cursewalker"] = {["id"] = 154020, ["effect"] = addon.descriptions["Prisoner's Concord"]},
-	["Prisonbreak Mauler"] = {["id"] = 154018, ["effect"] = addon.descriptions["Prisoner's Concord"]},
-	["Prisonbreak Soulmender"] = {["id"] = 154016, ["effect"] = addon.descriptions["Prisoner's Concord"]},	
+	[154011] = {["name"] = "Armed Prisoner", ["effect"] = addon.descriptions["Prisoner's Concord"]},
+	[154015] = {["name"] = "Escaped Ritualist", ["effect"] = addon.descriptions["Prisoner's Concord"]},
+	[154014] = {["name"] = "Imprisoned Cabalist", ["effect"] = addon.descriptions["Prisoner's Concord"]},
+	[154020] = {["name"] = "Prisonbreak Cursewalker", ["effect"] = addon.descriptions["Prisoner's Concord"]},
+	[154018] = {["name"] = "Prisonbreak Mauler", ["effect"] = addon.descriptions["Prisoner's Concord"]},
+	[154016] = {["name"] = "Prisonbreak Soulmender", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
 	
 }
 
 
 addon.rares = {
-	["Darksworn Goliath"] = {
-		["id"] = 173134, 
+	[173134] = {
+		["name"] = "Darksworn Goliath", 
 		["buffs"] = {"Spectral Oats"}
 	},
-	["Invasive Decayfly"] = {
-		["id"] = 173114, 
+	[173114] = {
+		["name"] = "Invasive Decayfly", 
 		["buffs"] = {"Pulsing Rot-hive", "Swarm Form"}
 	},
-	["Ghastly Charger"] = {
-		["id"] = 156134, 
+	[156134] = {
+		["name"] = "Ghastly Charger", 
 		["buffs"] = {"Obleron Endurance x3", "Spectral Oats"}
 	},
-	["Writhing Misery"] = {
-		["id"] = 170385, 
+	[170385] = {
+		["name"] = "Writhing Misery", 
 		["buffs"] = {"Resonating Effigy", "Ephemeral Effigy", "Obleron Endurance x3"}
 	},
-	["Dusky Tremorbeast"] = {
-		["id"] = 152508, 
+	[152508] = {
+		["name"] = "Dusky Tremorbeast", 
 		["buffs"] = {"Tremorbeast Tusk", "Tremorbeast Heart", "Obleron Winds x3"}
 	},
-	["Soulstalker V'lara"] = {
-		["id"] = 173191, 
+	[173191] = {
+		["name"] = "Soulstalker V'lara", 
 		["buffs"] = {"Soulward Clasp", "V'laras Cape of Subterfuge", "Obleron Winds x3"}
 	},
 	
 }
 
 
--- [""] = {["id"] = , ["effect"] = addon.descriptions[""]},
--- [""] = {["id"] = , ["description"] = ""},
+-- [""] = {["name"] = , ["effect"] = addon.descriptions[""]},
+-- [""] = {["name"] = , ["description"] = ""},

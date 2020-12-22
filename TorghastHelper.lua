@@ -6,7 +6,7 @@
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
+0
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -93,33 +93,32 @@ function TorghastHelper.isInTorghast()
 	return false
 end
 
+function TorghastHelper.getMouseOverID()
+	_, unit = GameTooltip:GetUnit();
+	if unit ~= nil then
+		local guid = UnitGUID(unit);
+		local id = tonumber(strmatch(guid, '%-(%d-)%-%x-$'), 10)
+		return id;
+	end
+end
+
 function TorghastHelper.addValueToTooltip()
 	--print(tostring(isRSoulPresent), tostring(alwaysDisplayTraits))
 	if isRSoulPresent or alwaysDisplayTraits then
-		local coloredKey = GameTooltipTextLeft1:GetText()
-		if (coloredKey ~= nil) then
-			local key = string.gsub(coloredKey, "|cff%x%x%x%x%x%x", "")
-			key = string.gsub(key, "|r", "")
-			--print(key)
-			if key ~= nil then
+		local unitID = TorghastHelper.getMouseOverID()
+		if (unitID ~= nil) then
 				local infoText, prefix
-				--local _,_,_, difficulty = GetInstanceInfo()
-				--print("Key:", key)	
-				--print("Value:", addon.values[key])
-				--print("Effekt:", addon.values[key]["effect"])
-				--print("Description:", addon.values[key]["effect"]["description"])
-				--if addon.values[key] ~= nil then
-					--print("Description:", addon.values[key]["effect"]["description"])
-				--end
-				if addon.values[key] ~= nil and addon.values[key]["effect"] ~= nil and addon.values[key]["effect"]["description"] ~= nil then
-					infoText = addon.values[key]["effect"]["description"]
+				--print(unitID)
+				--print(addon.values[unitID]["effect"])
+				if addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil then
+					infoText = GetSpellDescription(addon.values[unitID]["effect"]["id"])
 					prefix = TAG..": "
 				end
 				if infoText ~= nil and TorghastHelper.checkTooltipForDuplicates() then
 					GameTooltip:AddLine(prefix..infoText, 0.9, 0.8, 0.5, 1, 0)
 					GameTooltip:Show()
 				end
-			end
+			--end
 		end
 	end
 end
@@ -149,10 +148,6 @@ function TorghastHelper.createConfigFrame()
     	"This will allow you to always see the Anima Powers you will get when using the Ravenous Anima Soul, regardless of currently possessing it",
     	function(self, value) TorghastHelper.DisplayAlways(value) end)
     configAlwaysDisplay:SetPoint("TOPLEFT", configTitle, "BOTTOMLEFT", 0, -8)
-	
-	configBottom = configFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")
-    configBottom:SetPoint("BOTTOMLEFT", 16, 16)
-    --configBottom:SetText("If you want to help to translate this addon, visit\n TODO \nor write me a PM on CurseForge. \nCurrently only German and English translations are available.")
 end
 
 function TorghastHelper.DisplayAlways(bool)
