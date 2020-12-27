@@ -127,11 +127,13 @@ addon.rares = {
 	},
 	[173191] = {
 		["name"] = "Soulstalker V'lara", 
-		["buffs"] = {"Soulward Clasp", "V'laras Cape of Subterfuge", "Obleron Winds x3"}
+		["buffs"] = {"Soulward Clasp", "V'lara's Cape of Subterfuge", "Obleron Winds x3"}
 	},
-	
 }
 
-
+--	[156219] = {
+--		["name"] = "Testvalue", 
+--		["buffs"] = {"Soulward Clasp", "V'lara's Cape of Subterfuge", "Obleron Winds x3"}
+--	},
 -- [""] = {["name"] = , ["effect"] = addon.descriptions[""]},
 -- [""] = {["name"] = , ["description"] = ""},

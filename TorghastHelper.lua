@@ -20,6 +20,7 @@ local TAG = "TH"
 local name, addon = ...;
 local _, L = ...;
 local isRSoulPresent = false;
+local alwaysDisplayTraits, showBuffName, showDescription
 
 local eventResponseFrame = CreateFrame("Frame", "Helper")
 	eventResponseFrame:RegisterEvent("PLAYER_LOGIN")
@@ -49,9 +50,9 @@ local function eventHandler(self, event, arg1, arg2, arg3, arg4, arg5)
     elseif (event == "CURSOR_UPDATE") then
         TorghastHelper.function__wait(0.1, TorghastHelper.addValueToTooltip)
 	elseif(event == "PLAYER_LOGIN") then
-		TorghastHelper.createMenuFrame()
-		TorghastHelper.toggleAddon()
 		TorghastHelper.loadSV()
+		TorghastHelper.createMenuFrame()
+		TorghastHelper.toggleAddon()	
 	elseif(event == "PLAYER_LOGOUT") then
 		TorghastHelper.saveSV()
 	elseif (event == "BAG_UPDATE") then
@@ -97,23 +98,43 @@ function TorghastHelper.getMouseOverID()
 	end
 end
 
-function TorghastHelper.addValueToTooltip()
-	--print(tostring(isRSoulPresent), tostring(alwaysDisplayTraits))
-	if isRSoulPresent or alwaysDisplayTraits then
-		local unitID = TorghastHelper.getMouseOverID()
-		if (unitID ~= nil) then
-				local infoText, prefix
-				--print(unitID)
-				--print(addon.values[unitID]["effect"])
-				if addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil then
-					infoText = GetSpellDescription(addon.values[unitID]["effect"]["id"])
-					prefix = TAG..": "
+function TorghastHelper.addValueToTooltip()	
+	local unitID = TorghastHelper.getMouseOverID()
+	if (unitID ~= nil) then
+		local infoText = ""
+		if isRSoulPresent or alwaysDisplayTraits and addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil then
+			infoText = GetSpellDescription(addon.values[unitID]["effect"]["id"])
+		end
+		if addon.rares[unitID] ~= nil then
+			local buffs = addon.rares[unitID]["buffs"]
+			for i = 1, #buffs do
+				local buff = addon.rares[unitID]["buffs"][i]
+				local spellID = addon.descriptions[buff]["id"]
+				local spellName = GetSpellInfo(spellID)
+				infoText = infoText..i..": "
+				
+				if showBuffName and showDescription then
+					infoText = infoText.."\n["
 				end
-				if infoText ~= nil and TorghastHelper.checkTooltipForDuplicates() then
-					GameTooltip:AddLine(prefix..infoText, 0.9, 0.8, 0.5, 1, 0)
-					GameTooltip:Show()
+				
+				if showBuffName then
+					infoText = infoText..spellName	
 				end
-			--end
+				
+				if showBuffName and showDescription then
+					infoText = infoText.."] "
+				else
+					infoText = infoText.."\n"
+				end
+				
+				if showDescription then
+					infoText = infoText..GetSpellDescription(spellID).."\n"
+				end
+			end
+		end
+		if infoText ~= nil and TorghastHelper.checkTooltipForDuplicates() then
+			GameTooltip:AddLine(TAG..":\n"..infoText, 0.9, 0.8, 0.5, 1, 0)
+			GameTooltip:Show()
 		end
 	end
 end
@@ -121,16 +142,20 @@ end
 local configFrame = CreateFrame('Frame');
 local configTitle = nil;
 local configAlwaysDisplay = nil;
+local configShowBuffName = nil;
+local configShowDescription = nil;
 
 function TorghastHelper.createMenuFrame()
 	TorghastHelper.createConfigFrame()
-	configFrame.name = "Torghast Helper";
+	configFrame.name = "TorghastHelper";
 	configFrame.refresh = TorghastHelper.refresh();
 	InterfaceOptions_AddCategory(configFrame)
 end
 
 function TorghastHelper.refresh()
 	configAlwaysDisplay:SetChecked(alwaysDisplayTraits)
+	configShowBuffName:SetChecked(showBuffName)
+	configShowDescription:SetChecked(showDescription)
 end
 
 function TorghastHelper.createConfigFrame()
@@ -143,10 +168,30 @@ function TorghastHelper.createConfigFrame()
     	"This will allow you to always see the Anima Powers you will get when using the Ravenous Anima Soul, regardless of currently possessing it",
     	function(self, value) TorghastHelper.DisplayAlways(value) end)
     configAlwaysDisplay:SetPoint("TOPLEFT", configTitle, "BOTTOMLEFT", 0, -8)
+	
+	configShowBuffName = TorghastHelper.createCheckbox(
+		"Show Rare Buff Name",
+		"Shows the name of the buff of a rare mob",
+		function(self, value) TorghastHelper.ShowBuffName(value) end)
+	configShowBuffName:SetPoint("TOPLEFT", configTitle, "BOTTOMLEFT", 0, -30)
+	
+	configShowDescription = TorghastHelper.createCheckbox(
+		"Show Rare Buff Description",
+		"Shows the detailed description of the buff of a rare mob",
+		function(self, value) TorghastHelper.ShowDescription(value) end)
+	configShowDescription:SetPoint("TOPLEFT", configTitle, "BOTTOMLEFT", 0, -52)
 end
 
 function TorghastHelper.DisplayAlways(bool)
 	alwaysDisplayTraits = bool;
+end
+
+function TorghastHelper.ShowBuffName(bool)
+	showBuffName = bool;
+end
+
+function TorghastHelper.ShowDescription(bool)
+	showDescription = bool;
 end
 
 function TorghastHelper.createCheckbox(label, description, onClick)
@@ -222,8 +267,18 @@ function TorghastHelper.loadSV()
 	if alwaysDisplayTraits == nil then
 		alwaysDisplayTraits = false
 	end
+	showBuffName = svShowBuffName
+	if showBuffName == nil then
+		showBuffName = true
+	end
+	showDescription = svShowDescription
+	if showDescription == nil then
+		showDescription = false
+	end
 end
 
 function TorghastHelper.saveSV()
 	AlwaysDisplayAnimaPowers = alwaysDisplayTraits
+	svShowDescription = showDescription
+	svShowBuffName = showBuffName
 end
