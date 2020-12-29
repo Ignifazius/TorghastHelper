@@ -94,7 +94,7 @@ function TorghastHelper.getMouseOverID()
 	if unit ~= nil then
 		local guid = UnitGUID(unit);
 		local id = tonumber(strmatch(guid, '%-(%d-)%-%x-$'), 10)
-		return id;
+		return id
 	end
 end
 
@@ -102,7 +102,7 @@ function TorghastHelper.addValueToTooltip()
 	local unitID = TorghastHelper.getMouseOverID()
 	if (unitID ~= nil) then
 		local infoText = ""
-		if isRSoulPresent or alwaysDisplayTraits and addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil then
+		if isRSoulPresent or alwaysDisplayTraits and addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil and addon.values[unitID]["effect"]["id"] ~= nil then
 			infoText = GetSpellDescription(addon.values[unitID]["effect"]["id"])
 		end
 		if addon.rares[unitID] ~= nil then
@@ -132,7 +132,7 @@ function TorghastHelper.addValueToTooltip()
 				end
 			end
 		end
-		if infoText ~= nil and TorghastHelper.checkTooltipForDuplicates() then
+		if infoText ~= nil and infoText ~= "" and TorghastHelper.checkTooltipForDuplicates() then
 			GameTooltip:AddLine(TAG..":\n"..infoText, 0.9, 0.8, 0.5, 1, 0)
 			GameTooltip:Show()
 		end

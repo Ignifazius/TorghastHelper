@@ -24,6 +24,8 @@ addon.descriptions = {
 	["Obleron Endurance x3"] = {["id"] = 293027, ["description"] = "Increase maximum health by 45%."},
 	["Obleron Winds"] = {["id"] = 294592, ["description"] = "Increase haste by 3%."},
 	["Obleron Winds x3"] = {["id"] = 294594, ["description"] = "Increase haste by 9%."},
+	["Obleron Talisman x3"] = {["id"] = 294601, ["description"] = "Increase mastery by 9%."},
+	["Obleron Spikes x3"] = {["id"] = 294588, ["description"] = "Increase critical strike chance by 9%."},
 	["Spectral Oats"] = {["id"] = 315319, ["description"] = "Heal 2% of your max health every 1 sec while running."},
 	["Resonating Effigy"] = {["id"] = 339026, ["description"] = "You take 30% less Magic damage and suffer 15% more Physical damage."},
 	["Ephemeral Effigy"] = {["id"] = 339024, ["description"] = "You take 30% less Physical damage and suffer 15% more Magic damage."},
@@ -31,6 +33,14 @@ addon.descriptions = {
 	["Tremorbeast Heart"] = {["id"] = 296140, ["description"] = "Primary stat increased by 15%, and regenerate (100% of Spell power) health every 5 sec."},
 	["Soulward Clasp"] = {["id"] = 338922, ["description"] = "Your attacks have a chance to create a zone of soul empowerment nearby. Any player may collect this to gain 25% damage and healing done and 25% movement speed for 10 sec."},
 	["V'lara's Cape of Subterfuge"] = {["id"] = 338948, ["description"] = "Your attacks have a chance to cause you to fade away, reducing your threat for 6 sec. While you are under this effect, your critical strike chance is increased by 25%."},
+	["Dark Fortress"] = {["id"] = 337878, ["description"] = "While in combat, every 10 sec gain 5% reduced damage taken for 12 sec. This effect stacks up to 5 times."},
+	["Fallen Armaments"] = {["id"] = 337881, ["description"] = "While in combat, every 10 sec gain 5% Haste for 12 sec. This effect stacks up to 5 times."},
+	["Fractured Phantasma Lure"] = {["id"] = 337750, ["description"] = "Increases Phantasma earned by 100%, but also decreases damage done by 10%."},
+	["Reinforced Lure Casing"] = {["id"] = 337765, ["description"] = "Removes the damage done penalty from any Fractured Phantasma Lures carried."},
+	["Icy Heartcrust"] = {["id"] = 315300, ["description"] = "Absorb 60% of damage dealt to you when your health is below 15%."},
+	["Frostbite Wand"] = {["id"] = 315288, ["description"] = "Damaging an enemy will also apply Frostbite, dealing damage equal to 50% of their current hit points. After 4 sec, the enemy will start regenerating all of the lost health over a period of 10 sec.\nCreatures can only be Frostbitten once."},
+	["Erratic Howler"] = {["id"] = 337613, ["description"] = "While in combat, release an uncontrolled howl at random intervals. This howl inflicts (50% of Spell power) Shadow damage to enemies within 20 yds and interrupts spells."},
+	["Unstable Form"] = {["id"] = 337620, ["description"] = "While in combat, become incorporeal at random intervals, reducing damage taken by 99% for 3 sec."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
@@ -65,7 +75,7 @@ addon.values = {
 	[157634] = {["name"] = "Flameforge Enforcer", ["effect"] = addon.descriptions["Warden's Authority"]},
 	
 	[156212] = {["name"] = "Coldheart Agent", ["effect"] = addon.descriptions["Dark Armaments"]},
-	[170800] = {["name"] = "Coldheart Ambusher", ["effect"] = addon.descriptions["Dark Armaments"]},
+	[165594] = {["name"] = "Coldheart Ambusher", ["effect"] = addon.descriptions["Dark Armaments"]},
 	[156157] = {["name"] = "Coldheart Ascendant", ["effect"] = addon.descriptions["Dark Armaments"]},
 	[156226] = {["name"] = "Coldheart Binder", ["effect"] = addon.descriptions["Dark Armaments"]},
 	[156213] = {["name"] = "Coldheart Guardian", ["effect"] = addon.descriptions["Dark Armaments"]},
@@ -128,6 +138,26 @@ addon.rares = {
 	[173191] = {
 		["name"] = "Soulstalker V'lara", 
 		["buffs"] = {"Soulward Clasp", "V'lara's Cape of Subterfuge", "Obleron Winds x3"}
+	},
+	[156158] = {
+		["name"] = "Adjutant Felipos", 
+		["buffs"] = {"Obleron Winds x3", "Dark Fortress", "Fallen Armaments"}
+	},
+	[170414] = {
+		["name"] = "Howling Spectre", 
+		["buffs"] = {"Obleron Winds x3", "Erratic Howler", "Unstable Form"}
+	},
+	[170417] = {
+		["name"] = "Animated Stygia", 
+		["buffs"] = {"Obleron Spikes x3", "Fractured Phantasma Lure", "Reinforced Lure Casing"}
+	},
+	[156142] = {
+		["name"] = "Seeker of Souls", 
+		["buffs"] = {"Obleron Endurance x3", "Frostbite Wand", "Icy Heartcrust"}
+	},
+	[152517] = {
+		["name"] = "Deadsoul Lifetaker", 
+		["buffs"] = {"Vitality Guillotine", "Blade of the Lifetaker", "Obleron Talisman x3"}
 	},
 }
 
