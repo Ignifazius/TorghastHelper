@@ -1,5 +1,5 @@
 ## Title: TorghastHelper
-## Version: 0.4.1
+## Version: 0.4.2
 ## Author: Ignifazius
 ## Interface: 90002
 ## SavedVariablesPerCharacter: AlwaysDisplayAnimaPowers, svShowBuffName, svShowDescription

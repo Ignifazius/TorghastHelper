@@ -102,7 +102,7 @@ function TorghastHelper.addValueToTooltip()
 	local unitID = TorghastHelper.getMouseOverID()
 	if (unitID ~= nil) then
 		local infoText = ""
-		if isRSoulPresent or alwaysDisplayTraits and addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil and addon.values[unitID]["effect"]["id"] ~= nil then
+		if (isRSoulPresent or alwaysDisplayTraits) and addon.values[unitID] ~= nil and addon.values[unitID]["effect"] ~= nil and addon.values[unitID]["effect"]["id"] ~= nil then
 			infoText = GetSpellDescription(addon.values[unitID]["effect"]["id"])
 		end
 		if addon.rares[unitID] ~= nil then
