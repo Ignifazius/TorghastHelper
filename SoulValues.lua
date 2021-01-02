@@ -27,6 +27,7 @@ addon.descriptions = {
 	["Obleron Talisman x3"] = {["id"] = 294601, ["description"] = "Increase mastery by 9%."},
 	["Obleron Spikes x3"] = {["id"] = 294588, ["description"] = "Increase critical strike chance by 9%."},
 	["Spectral Oats"] = {["id"] = 315319, ["description"] = "Heal 2% of your max health every 1 sec while running."},
+	["Spectral Bridle"] = {["id"] = 315314, ["description"] = "Obtain a Spectral Bridle, an item that allows you to transform into a rideable Spectral Horse while in the Jailer's Tower."},
 	["Resonating Effigy"] = {["id"] = 339026, ["description"] = "You take 30% less Magic damage and suffer 15% more Physical damage."},
 	["Ephemeral Effigy"] = {["id"] = 339024, ["description"] = "You take 30% less Physical damage and suffer 15% more Magic damage."},
 	["Tremorbeast Tusk"] = {["id"] = 297576, ["description"] = "When an enemy damages you, they suffer (60% of Spell power) Nature damage. If they deal at least 5% of your health in damage, they are knocked back.The knockback may only occur every 10 sec per target."},
@@ -41,6 +42,10 @@ addon.descriptions = {
 	["Frostbite Wand"] = {["id"] = 315288, ["description"] = "Damaging an enemy will also apply Frostbite, dealing damage equal to 50% of their current hit points. After 4 sec, the enemy will start regenerating all of the lost health over a period of 10 sec.\nCreatures can only be Frostbitten once."},
 	["Erratic Howler"] = {["id"] = 337613, ["description"] = "While in combat, release an uncontrolled howl at random intervals. This howl inflicts (50% of Spell power) Shadow damage to enemies within 20 yds and interrupts spells."},
 	["Unstable Form"] = {["id"] = 337620, ["description"] = "While in combat, become incorporeal at random intervals, reducing damage taken by 99% for 3 sec."},
+	["Vial of Lost Potential"] = {["id"] = 305273, ["description"] = "Clear all permanent debuffs left by the Eternal Subjugator."},
+	["Subjugator's Manacles"] = {["id"] = 297721, ["description"] = "When you attack a new creature, they suffer (210% of Spell power) Shadow damage and are silenced for 4 sec."},
+	["Shimmering Wingcape"] = {["id"] = 338029, ["description"] = "Reduces the range at which enemies can detect you by 5 yds."},
+	["Irritating Moth Dust"] = {["id"] = 338023, ["description"] = "Your attacks have a chance to create a cloud of irritant near your target for 12 sec. Enemies caught within have their damage done reduced by 40%."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
@@ -67,6 +72,9 @@ addon.values = {
 	[155812] = {["name"] = "Mawsworn Ritualist", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[157819] = {["name"] = "Mawsworn Shadestalker", ["effect"] = addon.descriptions["Warden's Authority"]},
 	[155798] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
+	[150965] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
+	[171172] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
+	--[162661] = {["name"] = "Mawsworn Ward", ["effect"] = addon.descriptions["Shackle Keys"]},
 	
 	[155824] = {["name"] = "Lumbering Creation", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[155793] = {["name"] = "Skeletal Remains", ["effect"] = addon.descriptions["Skeletal Ward"]},	
@@ -110,6 +118,7 @@ addon.values = {
 	[154020] = {["name"] = "Prisonbreak Cursewalker", ["effect"] = addon.descriptions["Prisoner's Concord"]},
 	[154018] = {["name"] = "Prisonbreak Mauler", ["effect"] = addon.descriptions["Prisoner's Concord"]},
 	[154016] = {["name"] = "Prisonbreak Soulmender", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
+	--[165060] = {["name"] = "Animimic", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
 	
 }
 
@@ -125,39 +134,47 @@ addon.rares = {
 	},
 	[156134] = {
 		["name"] = "Ghastly Charger", 
-		["buffs"] = {"Obleron Endurance x3", "Spectral Oats"}
+		["buffs"] = {"Spectral Oats", "Spectral Bridle"}
 	},
 	[170385] = {
 		["name"] = "Writhing Misery", 
-		["buffs"] = {"Resonating Effigy", "Ephemeral Effigy", "Obleron Endurance x3"}
+		["buffs"] = {"Resonating Effigy", "Ephemeral Effigy"}
 	},
 	[152508] = {
 		["name"] = "Dusky Tremorbeast", 
-		["buffs"] = {"Tremorbeast Tusk", "Tremorbeast Heart", "Obleron Winds x3"}
+		["buffs"] = {"Tremorbeast Tusk", "Tremorbeast Heart"}
 	},
 	[173191] = {
 		["name"] = "Soulstalker V'lara", 
-		["buffs"] = {"Soulward Clasp", "V'lara's Cape of Subterfuge", "Obleron Winds x3"}
+		["buffs"] = {"Soulward Clasp", "V'lara's Cape of Subterfuge"}
 	},
 	[156158] = {
 		["name"] = "Adjutant Felipos", 
-		["buffs"] = {"Obleron Winds x3", "Dark Fortress", "Fallen Armaments"}
+		["buffs"] = {"Dark Fortress", "Fallen Armaments"}
 	},
 	[170414] = {
 		["name"] = "Howling Spectre", 
-		["buffs"] = {"Obleron Winds x3", "Erratic Howler", "Unstable Form"}
+		["buffs"] = {"Erratic Howler", "Unstable Form"}
 	},
 	[170417] = {
 		["name"] = "Animated Stygia", 
-		["buffs"] = {"Obleron Spikes x3", "Fractured Phantasma Lure", "Reinforced Lure Casing"}
+		["buffs"] = {"Fractured Phantasma Lure", "Reinforced Lure Casing"}
 	},
 	[156142] = {
 		["name"] = "Seeker of Souls", 
-		["buffs"] = {"Obleron Endurance x3", "Frostbite Wand", "Icy Heartcrust"}
+		["buffs"] = {"Frostbite Wand", "Icy Heartcrust"}
 	},
 	[152517] = {
 		["name"] = "Deadsoul Lifetaker", 
-		["buffs"] = {"Vitality Guillotine", "Blade of the Lifetaker", "Obleron Talisman x3"}
+		["buffs"] = {"Vitality Guillotine", "Blade of the Lifetaker"}
+	},
+	[152612] = {
+		["name"] = "Subjugator Klontzas", 
+		["buffs"] = {"Vial of Lost Potential", "Subjugator's Manacles"}
+	},
+	[155483] = {
+		["name"] = "Faeleaf Shimmerwing", 
+		["buffs"] = {"Shimmering Wingcape", "Irritating Moth Dust"}
 	},
 }
 
