@@ -48,6 +48,8 @@ addon.descriptions = {
 	["Irritating Moth Dust"] = {["id"] = 338023, ["description"] = "Your attacks have a chance to create a cloud of irritant near your target for 12 sec. Enemies caught within have their damage done reduced by 40%."},
 	["Coffer of Spectral Whispers"] = {["id"] = 338446, ["description"] = "You become immune to Silence and Interrupt effects."},
 	["Elongated Skeletal Arms"] = {["id"] = 338449, ["description"] = "Increases the range of your Auto Attack by 10 yds."},
+	["Vitality Guillotine"] = {["id"] = 300730, ["description"] = "The first time you damage an Elite enemy, deal additional damage equal to half their maximum health. After this occurs 3 times this effect is lost, and you gain 30% maximum health."},
+	["Blade of the Lifetaker"] = {["id"] = 300771, ["description"] = "Your attacks have a high chance to steal health from the enemy equal to 10% of your maximum health."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
