@@ -46,6 +46,8 @@ addon.descriptions = {
 	["Subjugator's Manacles"] = {["id"] = 297721, ["description"] = "When you attack a new creature, they suffer (210% of Spell power) Shadow damage and are silenced for 4 sec."},
 	["Shimmering Wingcape"] = {["id"] = 338029, ["description"] = "Reduces the range at which enemies can detect you by 5 yds."},
 	["Irritating Moth Dust"] = {["id"] = 338023, ["description"] = "Your attacks have a chance to create a cloud of irritant near your target for 12 sec. Enemies caught within have their damage done reduced by 40%."},
+	["Coffer of Spectral Whispers"] = {["id"] = 338446, ["description"] = "You become immune to Silence and Interrupt effects."},
+	["Elongated Skeletal Arms"] = {["id"] = 338449, ["description"] = "Increases the range of your Auto Attack by 10 yds."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
@@ -175,6 +177,10 @@ addon.rares = {
 	[155483] = {
 		["name"] = "Faeleaf Shimmerwing", 
 		["buffs"] = {"Shimmering Wingcape", "Irritating Moth Dust"}
+	},
+	[173051] = {
+		["name"] = "Suppressor Xelsor", 
+		["buffs"] = {"Elongated Skeletal Arms", "Coffer of Spectral Whispers"}
 	},
 }
 
