@@ -50,6 +50,7 @@ addon.descriptions = {
 	["Elongated Skeletal Arms"] = {["id"] = 338449, ["description"] = "Increases the range of your Auto Attack by 10 yds."},
 	["Vitality Guillotine"] = {["id"] = 300730, ["description"] = "The first time you damage an Elite enemy, deal additional damage equal to half their maximum health. After this occurs 3 times this effect is lost, and you gain 30% maximum health."},
 	["Blade of the Lifetaker"] = {["id"] = 300771, ["description"] = "Your attacks have a high chance to steal health from the enemy equal to 10% of your maximum health."},
+	["Pouch of Phantasma"] = {["id"] = 295072, ["description"] = "Acquire 75 Phantasma."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
@@ -72,9 +73,11 @@ addon.values = {
 	[155830] = {["name"] = "Mawsworn Disciple", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[157810] = {["name"] = "Mawsworn Endbringer", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[155949] = {["name"] = "Mawsworn Soulbinder", ["effect"] = addon.descriptions["Marrow Scooper"]},
+	[155831] = {["name"] = "Mawsworn Soulbinder", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[157809] = {["name"] = "Mawsworn Darkcaster", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[155812] = {["name"] = "Mawsworn Ritualist", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[157819] = {["name"] = "Mawsworn Shadestalker", ["effect"] = addon.descriptions["Warden's Authority"]},
+	[171173] = {["name"] = "Mawsworn Shadestalker", ["effect"] = addon.descriptions["Warden's Authority"]},
 	[155798] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
 	[150965] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
 	[171172] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
@@ -122,6 +125,7 @@ addon.values = {
 	[154020] = {["name"] = "Prisonbreak Cursewalker", ["effect"] = addon.descriptions["Prisoner's Concord"]},
 	[154018] = {["name"] = "Prisonbreak Mauler", ["effect"] = addon.descriptions["Prisoner's Concord"]},
 	[154016] = {["name"] = "Prisonbreak Soulmender", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
+	[164897] = {["name"] = "Fog Dweller", ["effect"] = addon.descriptions["Pouch of Phantasma"]},	
 	--[165060] = {["name"] = "Animimic", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
 	
 }
@@ -130,7 +134,7 @@ addon.values = {
 addon.rares = {
 	[173134] = {
 		["name"] = "Darksworn Goliath", 
-		["buffs"] = {"Spectral Oats"}
+		["buffs"] = {"Fallen Armaments", "Dark Fortress"}
 	},
 	[173114] = {
 		["name"] = "Invasive Decayfly", 
@@ -183,6 +187,10 @@ addon.rares = {
 	[173051] = {
 		["name"] = "Suppressor Xelsor", 
 		["buffs"] = {"Elongated Skeletal Arms", "Coffer of Spectral Whispers"}
+	},
+	[156237] = {
+		["name"] = "Imperator Dara", 
+		["buffs"] = {"Fallen Armaments", "Dark Fortress"}
 	},
 }
 
