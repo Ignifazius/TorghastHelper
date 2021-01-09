@@ -51,6 +51,8 @@ addon.descriptions = {
 	["Vitality Guillotine"] = {["id"] = 300730, ["description"] = "The first time you damage an Elite enemy, deal additional damage equal to half their maximum health. After this occurs 3 times this effect is lost, and you gain 30% maximum health."},
 	["Blade of the Lifetaker"] = {["id"] = 300771, ["description"] = "Your attacks have a high chance to steal health from the enemy equal to 10% of your maximum health."},
 	["Pouch of Phantasma"] = {["id"] = 295072, ["description"] = "Acquire 75 Phantasma."},
+	["Lumbering Form"] = {["id"] = 337938, ["description"] = "While in combat, your size is increased by 100% and you automatically knock back ALL players and enemies that come within 2 yds of yourself."},
+	["Potent Acid Gland"] = {["id"] = 337928, ["description"] = "Your attacks have a chance to launch a glob of acid, inflicting (250% of Spell power) Nature damage and allowing you to ignore 100% of the target's armor for 8 sec."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
@@ -191,6 +193,10 @@ addon.rares = {
 	[156237] = {
 		["name"] = "Imperator Dara", 
 		["buffs"] = {"Fallen Armaments", "Dark Fortress"}
+	},
+	[169823] = {
+		["name"] = "Gorm Behemoth", 
+		["buffs"] = {"Lumbering Form", "Potent Acid Gland"}
 	},
 }
 
