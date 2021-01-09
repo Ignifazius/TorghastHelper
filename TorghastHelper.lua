@@ -76,15 +76,17 @@ end
 
 function TorghastHelper.isInTorghast()
 	local id = C_Map.GetBestMapForUnit("player");
-	local mapinfo = C_Map.GetMapInfo(id);
-	--mapid = mapinfo.mapID;
-	name = mapinfo.name;
-	--typ = mapinfo.mapType;
-	--parent = mapinfo.parentMapID;
-	--flags = mapinfo.flags;
-	--print(mapid, name, typ, parent, flags)
-	if name == "Torghast" then --too many ids: id == 1758 (Skoldus Hall lvl 1), id = 1627 (Skoldus Hall lvl 2) etc.
-		return true
+	if id ~= nil then
+		local mapinfo = C_Map.GetMapInfo(id);
+		--mapid = mapinfo.mapID;
+		name = mapinfo.name;
+		--typ = mapinfo.mapType;
+		--parent = mapinfo.parentMapID;
+		--flags = mapinfo.flags;
+		--print(mapid, name, typ, parent, flags)
+		if name == "Torghast" then --too many ids: id == 1758 (Skoldus Hall lvl 1), id = 1627 (Skoldus Hall lvl 2) etc.
+			return true
+		end
 	end
 	return false
 end
