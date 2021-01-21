@@ -150,11 +150,6 @@ function TorghastHelper.createButtonBar()
 
 end
 
-function TorghastHelper.getInfuserLoc()
-	print(infuserLocation.container.." "..infuserLocation.slot)
-	return infuserLocation.container.." "..infuserLocation.slot
-end
-
 function TorghastHelper.toggleButtonBar()
 	if TorghastHelper.isInTorghast() then
 		buttonFrame:Show()
@@ -164,8 +159,6 @@ function TorghastHelper.toggleButtonBar()
 end
 
 function TorghastHelper.toggleButtons()
-	print(test)
-	print(tostring(isRSoulPresent), tostring(isInfuserPresent))
 	if isRSoulPresent then
 		sb:Show()
 	else
