@@ -17,10 +17,14 @@
 ]]
 TorghastHelper = {}
 local TAG = "TH"
-local name, addon = ...;
-local _, L = ...;
-local isRSoulPresent = false;
+local name, addon = ...
+local _, L = ...
+local isRSoulPresent = false
+local soulLocation = {}
+local isInfuserPresent = false
+local infuserLocation = {}
 local alwaysDisplayTraits, showBuffName, showDescription
+local buttonFrame
 
 local eventResponseFrame = CreateFrame("Frame", "Helper")
 	eventResponseFrame:RegisterEvent("PLAYER_LOGIN")
@@ -28,19 +32,20 @@ local eventResponseFrame = CreateFrame("Frame", "Helper")
 	eventResponseFrame:RegisterEvent("ZONE_CHANGED")
 	eventResponseFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
 	eventResponseFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+	eventResponseFrame:RegisterEvent("INSTANCE_GROUP_SIZE_CHANGED")
 	
 
 function TorghastHelper.registerAddon()
-	eventResponseFrame:RegisterEvent("UPDATE_MOUSEOVER_UNIT");
-	eventResponseFrame:RegisterEvent("CURSOR_UPDATE");
-	eventResponseFrame:RegisterEvent("BAG_UPDATE");
+	eventResponseFrame:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
+	eventResponseFrame:RegisterEvent("CURSOR_UPDATE")
+	eventResponseFrame:RegisterEvent("BAG_UPDATE")
 	--print("TorghastHelper active")
 end
 
 function TorghastHelper.unregisterAddon()
-	eventResponseFrame:UnregisterEvent("UPDATE_MOUSEOVER_UNIT");
-	eventResponseFrame:UnregisterEvent("CURSOR_UPDATE");
-	eventResponseFrame:UnregisterEvent("BAG_UPDATE");
+	eventResponseFrame:UnregisterEvent("UPDATE_MOUSEOVER_UNIT")
+	eventResponseFrame:UnregisterEvent("CURSOR_UPDATE")
+	eventResponseFrame:UnregisterEvent("BAG_UPDATE")
 	--print("TorghastHelper inactive")
 end
 
@@ -52,18 +57,21 @@ local function eventHandler(self, event, arg1, arg2, arg3, arg4, arg5)
 	elseif(event == "PLAYER_LOGIN") then
 		TorghastHelper.loadSV()
 		TorghastHelper.createMenuFrame()
-		TorghastHelper.toggleAddon()	
+		TorghastHelper.toggleAddon()
+		TorghastHelper.createButtonBar()
+		TorghastHelper.toggleButtonBar()
 	elseif(event == "PLAYER_LOGOUT") then
 		TorghastHelper.saveSV()
-	elseif (event == "BAG_UPDATE") then
-		TorghastHelper.scanForRSoul()
+	elseif (event == "BAG_UPDATE" or event == "INSTANCE_GROUP_SIZE_CHANGED") then
+		TorghastHelper.scanForItems()
     end			  
 	if event == "ZONE_CHANGED_NEW_AREA" then --entering/leaving torghast
 		TorghastHelper.toggleAddon()
+		TorghastHelper.toggleButtonBar()
 	end
 	--print(event)
 end
-eventResponseFrame:SetScript("OnEvent", eventHandler);
+eventResponseFrame:SetScript("OnEvent", eventHandler)
 
 
 function TorghastHelper.toggleAddon() 
@@ -75,14 +83,14 @@ function TorghastHelper.toggleAddon()
 end
 
 function TorghastHelper.isInTorghast()
-	local id = C_Map.GetBestMapForUnit("player");
+	local id = C_Map.GetBestMapForUnit("player")
 	if id ~= nil then
-		local mapinfo = C_Map.GetMapInfo(id);
-		--mapid = mapinfo.mapID;
-		name = mapinfo.name;
-		--typ = mapinfo.mapType;
-		--parent = mapinfo.parentMapID;
-		--flags = mapinfo.flags;
+		local mapinfo = C_Map.GetMapInfo(id)
+		--mapid = mapinfo.mapID
+		name = mapinfo.name
+		--typ = mapinfo.mapType
+		--parent = mapinfo.parentMapID
+		--flags = mapinfo.flags
 		--print(mapid, name, typ, parent, flags)
 		if name == "Torghast" then --too many ids: id == 1758 (Skoldus Hall lvl 1), id = 1627 (Skoldus Hall lvl 2) etc.
 			return true
@@ -91,10 +99,68 @@ function TorghastHelper.isInTorghast()
 	return false
 end
 
+
+function TorghastHelper.createButtonBar()
+	buttonFrame = CreateFrame("Frame", "thButtonFrame", UIParent, "BackdropTemplate")
+		buttonFrame:SetSize(125, 70)
+		buttonFrame:SetPoint("CENTER")
+		buttonFrame:SetBackdrop({
+			bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
+			edgeFile = "Interface\\ChatFrame\\ChatFrameBackground",
+			edgeSize = 1,
+		})
+		buttonFrame:SetBackdropColor(0, 0, 0, .5)
+		buttonFrame:SetBackdropBorderColor(0, 0, 0)
+		buttonFrame:SetMovable(true)
+		buttonFrame:EnableMouse(true)
+		buttonFrame:RegisterForDrag("LeftButton")
+		buttonFrame:SetScript("OnDragStart", buttonFrame.StartMoving)
+		buttonFrame:SetScript("OnDragStop", buttonFrame.StopMovingOrSizing)
+
+	local ib = CreateFrame("Button", "infuserButton", buttonFrame, "SecureActionButtonTemplate")
+		ib:SetSize(50,50)
+		ib:SetPoint("TOPLEFT",10,-10)
+		local infuserIcon = "Interface\\Icons\\spell_burningsoul"
+		ib:SetNormalTexture(infuserIcon)
+		ib:SetHighlightTexture(infuserIcon)
+		ib:GetHighlightTexture(infuserIcon):SetVertexColor(0.5, 0.5, 0.5)
+
+		local infuserName = GetItemInfo(184652)
+		ib:SetAttribute("type", "item");
+		ib:SetAttribute("item", infuserName)
+		
+	local sb = CreateFrame("Button", "soulButton", buttonFrame, "SecureActionButtonTemplate")
+		sb:SetSize(50,50)
+		sb:SetPoint("TOPLEFT",65,-10)
+		local soulIcon = "Interface\\Icons\\inv_misc_orb_05"
+		sb:SetNormalTexture(soulIcon)
+		sb:SetHighlightTexture(soulIcon)
+		sb:GetHighlightTexture(soulIcon):SetVertexColor(0.5, 0.5, 0.5)
+			
+		local soulName = GetItemInfo(170540)
+		sb:SetAttribute("type", "item");
+		sb:SetAttribute("item", soulName)
+
+
+end
+
+function TorghastHelper.getInfuserLoc()
+	print(infuserLocation.container.." "..infuserLocation.slot)
+	return infuserLocation.container.." "..infuserLocation.slot
+end
+
+function TorghastHelper.toggleButtonBar()
+	if TorghastHelper.isInTorghast() then
+		buttonFrame:Show()
+	else
+		buttonFrame:Hide()
+	end
+end
+
 function TorghastHelper.getMouseOverID()
-	_, unit = GameTooltip:GetUnit();
+	_, unit = GameTooltip:GetUnit()
 	if unit ~= nil then
-		local guid = UnitGUID(unit);
+		local guid = UnitGUID(unit)
 		local id = tonumber(strmatch(guid, '%-(%d-)%-%x-$'), 10)
 		return id
 	end
@@ -141,16 +207,16 @@ function TorghastHelper.addValueToTooltip()
 	end
 end
 
-local configFrame = CreateFrame('Frame');
-local configTitle = nil;
-local configAlwaysDisplay = nil;
-local configShowBuffName = nil;
-local configShowDescription = nil;
+local configFrame = CreateFrame('Frame')
+local configTitle = nil
+local configAlwaysDisplay = nil
+local configShowBuffName = nil
+local configShowDescription = nil
 
 function TorghastHelper.createMenuFrame()
 	TorghastHelper.createConfigFrame()
-	configFrame.name = "TorghastHelper";
-	configFrame.refresh = TorghastHelper.refresh();
+	configFrame.name = "TorghastHelper"
+	configFrame.refresh = TorghastHelper.refresh()
 	InterfaceOptions_AddCategory(configFrame)
 end
 
@@ -185,15 +251,15 @@ function TorghastHelper.createConfigFrame()
 end
 
 function TorghastHelper.DisplayAlways(bool)
-	alwaysDisplayTraits = bool;
+	alwaysDisplayTraits = bool
 end
 
 function TorghastHelper.ShowBuffName(bool)
-	showBuffName = bool;
+	showBuffName = bool
 end
 
 function TorghastHelper.ShowDescription(bool)
-	showDescription = bool;
+	showDescription = bool
 end
 
 function TorghastHelper.createCheckbox(label, description, onClick)
@@ -209,35 +275,35 @@ function TorghastHelper.createCheckbox(label, description, onClick)
 	return check
 end
 
-local waitTable = {};
-local waitFrame = nil;
+local waitTable = {}
+local waitFrame = nil
 
 function TorghastHelper.function__wait(delay, func, ...)
   if(type(delay)~="number" or type(func)~="function") then
-    return false;
+    return false
   end
   if(waitFrame == nil) then
-    waitFrame = CreateFrame("Frame","WaitFrame", UIParent);
+    waitFrame = CreateFrame("Frame","WaitFrame", UIParent)
     waitFrame:SetScript("onUpdate",function (self,elapse)
-      local count = #waitTable;
-      local i = 1;
+      local count = #waitTable
+      local i = 1
       while(i<=count) do
-        local waitRecord = tremove(waitTable,i);
-        local d = tremove(waitRecord,1);
-        local f = tremove(waitRecord,1);
-        local p = tremove(waitRecord,1);
+        local waitRecord = tremove(waitTable,i)
+        local d = tremove(waitRecord,1)
+        local f = tremove(waitRecord,1)
+        local p = tremove(waitRecord,1)
         if(d>elapse) then
-          tinsert(waitTable,i,{d-elapse,f,p});
-          i = i + 1;
+          tinsert(waitTable,i,{d-elapse,f,p})
+          i = i + 1
         else
-          count = count - 1;
-          f(unpack(p));
+          count = count - 1
+          f(unpack(p))
         end
       end
-    end);
+    end)
   end
-  tinsert(waitTable,{delay,func,{...}});
-  return true;
+  tinsert(waitTable,{delay,func,{...}})
+  return true
 end
 
 function TorghastHelper.checkTooltipForDuplicates()
@@ -251,17 +317,26 @@ function TorghastHelper.checkTooltipForDuplicates()
     return true
 end
 
-function TorghastHelper.scanForRSoul()
-	for container=0,5 do
-		for slot=0,34 do
+function TorghastHelper.scanForItems()
+	isRSoulPresent = false
+	isInfuserPresent = false
+	for container=0,4 do
+		local c = GetContainerNumSlots(container)
+		for slot=1,c do
 			local _, _, _, quality, _, _, _, _, _, itemID = GetContainerItemInfo(container, slot)			
 			if itemID == 170540 then --ranveonous anima soul
 				isRSoulPresent = true
+				soulLocation = {["container"] = container, ["slot"] = slot}
+			end
+			if itemID == 184652 then -- phantasmic infuser
+				isInfuserPresent = true
+				infuserLocation = {["container"] = container, ["slot"] = slot}
+			end
+			if isRSoulPresent and isInfuserPresent then
 				return
 			end
 		end
 	end
-	isRSoulPresent = false
 end
 
 function TorghastHelper.loadSV()
