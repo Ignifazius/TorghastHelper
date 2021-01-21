@@ -83,7 +83,8 @@ addon.values = {
 	[155798] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
 	[150965] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
 	[171172] = {["name"] = "Mawsworn Shackler", ["effect"] = addon.descriptions["Shackle Keys"]},
-	--[162661] = {["name"] = "Mawsworn Ward", ["effect"] = addon.descriptions["Shackle Keys"]},
+	[157807] = {["name"] = "Mawsworn Soulweaver", ["effect"] = nil}, --TODO
+	[162661] = {["name"] = "Mawsworn Ward", ["effect"] = addon.descriptions["Pouch of Phantasma"]},
 	
 	[155824] = {["name"] = "Lumbering Creation", ["effect"] = addon.descriptions["Marrow Scooper"]},
 	[155793] = {["name"] = "Skeletal Remains", ["effect"] = addon.descriptions["Skeletal Ward"]},	
@@ -128,7 +129,7 @@ addon.values = {
 	[154018] = {["name"] = "Prisonbreak Mauler", ["effect"] = addon.descriptions["Prisoner's Concord"]},
 	[154016] = {["name"] = "Prisonbreak Soulmender", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
 	[164897] = {["name"] = "Fog Dweller", ["effect"] = addon.descriptions["Pouch of Phantasma"]},	
-	--[165060] = {["name"] = "Animimic", ["effect"] = addon.descriptions["Prisoner's Concord"]},	
+	[165060] = {["name"] = "Animimic", ["effect"] = addon.descriptions["Pouch of Phantasma"]},	
 	
 }
 
