@@ -24,7 +24,7 @@ local soulLocation = {}
 local isInfuserPresent = false
 local infuserLocation = {}
 local alwaysDisplayTraits, showBuffName, showDescription
-local buttonFrame
+local buttonFrame, ib, sb
 
 local eventResponseFrame = CreateFrame("Frame", "Helper")
 	eventResponseFrame:RegisterEvent("PLAYER_LOGIN")
@@ -57,22 +57,28 @@ local function eventHandler(self, event, arg1, arg2, arg3, arg4, arg5)
 	elseif(event == "PLAYER_LOGIN") then
 		TorghastHelper.loadSV()
 		TorghastHelper.createMenuFrame()
-		TorghastHelper.toggleAddon()
 		TorghastHelper.createButtonBar()
-		TorghastHelper.toggleButtonBar()
+		TorghastHelper.updateFrames()
 	elseif(event == "PLAYER_LOGOUT") then
 		TorghastHelper.saveSV()
 	elseif (event == "BAG_UPDATE" or event == "INSTANCE_GROUP_SIZE_CHANGED") then
 		TorghastHelper.scanForItems()
+		TorghastHelper.toggleButtons()
     end			  
 	if event == "ZONE_CHANGED_NEW_AREA" then --entering/leaving torghast
-		TorghastHelper.toggleAddon()
-		TorghastHelper.toggleButtonBar()
+		TorghastHelper.updateFrames()
 	end
 	--print(event)
 end
 eventResponseFrame:SetScript("OnEvent", eventHandler)
 
+
+function TorghastHelper.updateFrames()
+	TorghastHelper.toggleAddon()
+	TorghastHelper.scanForItems()
+	TorghastHelper.toggleButtonBar()
+	TorghastHelper.toggleButtons()
+end
 
 function TorghastHelper.toggleAddon() 
 	if TorghastHelper.isInTorghast() then
@@ -117,7 +123,7 @@ function TorghastHelper.createButtonBar()
 		buttonFrame:SetScript("OnDragStart", buttonFrame.StartMoving)
 		buttonFrame:SetScript("OnDragStop", buttonFrame.StopMovingOrSizing)
 
-	local ib = CreateFrame("Button", "infuserButton", buttonFrame, "SecureActionButtonTemplate")
+	ib = CreateFrame("Button", "infuserButton", buttonFrame, "SecureActionButtonTemplate")
 		ib:SetSize(50,50)
 		ib:SetPoint("TOPLEFT",10,-10)
 		local infuserIcon = "Interface\\Icons\\spell_burningsoul"
@@ -129,7 +135,7 @@ function TorghastHelper.createButtonBar()
 		ib:SetAttribute("type", "item");
 		ib:SetAttribute("item", infuserName)
 		
-	local sb = CreateFrame("Button", "soulButton", buttonFrame, "SecureActionButtonTemplate")
+	sb = CreateFrame("Button", "soulButton", buttonFrame, "SecureActionButtonTemplate")
 		sb:SetSize(50,50)
 		sb:SetPoint("TOPLEFT",65,-10)
 		local soulIcon = "Interface\\Icons\\inv_misc_orb_05"
@@ -154,6 +160,21 @@ function TorghastHelper.toggleButtonBar()
 		buttonFrame:Show()
 	else
 		buttonFrame:Hide()
+	end
+end
+
+function TorghastHelper.toggleButtons()
+	print(test)
+	print(tostring(isRSoulPresent), tostring(isInfuserPresent))
+	if isRSoulPresent then
+		sb:Show()
+	else
+		sb:Hide()
+	end
+	if isInfuserPresent then
+		ib:Show()
+	else
+		ib:Hide()
 	end
 end
 
@@ -225,6 +246,8 @@ function TorghastHelper.refresh()
 	configShowBuffName:SetChecked(showBuffName)
 	configShowDescription:SetChecked(showDescription)
 end
+
+
 
 function TorghastHelper.createConfigFrame()
 	configTitle = configFrame:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
