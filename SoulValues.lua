@@ -53,6 +53,8 @@ addon.descriptions = {
 	["Pouch of Phantasma"] = {["id"] = 295072, ["description"] = "Acquire 75 Phantasma."},
 	["Lumbering Form"] = {["id"] = 337938, ["description"] = "While in combat, your size is increased by 100% and you automatically knock back ALL players and enemies that come within 2 yds of yourself."},
 	["Potent Acid Gland"] = {["id"] = 337928, ["description"] = "Your attacks have a chance to launch a glob of acid, inflicting (250% of Spell power) Nature damage and allowing you to ignore 100% of the target's armor for 8 sec."},
+	["Ephemeral Effigy"] = {["id"] = 339024, ["description"] = "You take 30% less Physical damage and suffer 15% more Magic damage."},
+	["Resonating Effigy"] = {["id"] = 339026, ["description"] = "You take 30% less Magic damage and suffer 15% more Physical damage."},
 	--[""] = {["id"] = , ["description"] = ""},
 	--swap: \[(".+")\] = {\["id"\] = (\d+) TO \[\2\] = {\["id"\] = (\1)
 }
@@ -198,6 +200,10 @@ addon.rares = {
 	[169823] = {
 		["name"] = "Gorm Behemoth", 
 		["buffs"] = {"Lumbering Form", "Potent Acid Gland"}
+	},
+	[173238] = {
+		["name"] = "Deadsoul Strider", 
+		["buffs"] = {"Ephemeral Effigy", "Resonating Effigy"}
 	},
 }
 
